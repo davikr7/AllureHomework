@@ -15,9 +15,4 @@ public class TestBase {
             repository = "allure-framework/allure2",
             issueName = "Activate Cleanthat in Spotless";
 
-
-    @BeforeAll
-    public static void setUp() {
-        open("https://github.com");
-    }
 }
