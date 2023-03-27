@@ -8,7 +8,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class AnnotationTest extends TestBase {
+public class AnnotationTest {
 
     @Test
     @Feature("Issue в репозитории")
@@ -19,10 +19,10 @@ public class AnnotationTest extends TestBase {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
         steps.openMainPage();
-        steps.searchForRepository(repository);
-        steps.clickOnRepositoryLink(repository);
+        steps.searchForRepository(TestBase.repository);
+        steps.clickOnRepositoryLink(TestBase.repository);
         steps.openIssuesTab();
-        steps.shouldSeeIssueWithName(issueName);
+        steps.shouldSeeIssueWithName(TestBase.issueName);
         steps.takeScreenshot();
     }
 }

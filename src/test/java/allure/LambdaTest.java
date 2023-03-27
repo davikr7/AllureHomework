@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
-public class LambdaTest extends TestBase {
+public class LambdaTest  {
 
     @Test
     @Feature("Issue в репозитории")
@@ -29,22 +29,22 @@ public class LambdaTest extends TestBase {
             open("https://github.com");
         });
 
-        step("Ищем репозиторий " + repository, () -> {
-            searchInput.click();
-            searchInput.sendKeys(repository);
-            searchInput.submit();
+        step("Ищем репозиторий " + TestBase.repository, () -> {
+            TestBase.searchInput.click();
+            TestBase.searchInput.sendKeys(TestBase.repository);
+            TestBase.searchInput.submit();
         });
 
-        step("Кликаем по ссылке репозитория " + repository, () -> {
-            $(linkText(repository)).click();
+        step("Кликаем по ссылке репозитория " + TestBase.repository, () -> {
+            $(linkText(TestBase.repository)).click();
         });
 
         step("Открываем таб Issues", () -> {
-            issueTab.click();
+            TestBase.issueTab.click();
         });
 
-        step("Проверяем наличие Issue с названием " + issueName, () -> {
-            $(withText(issueName)).should(Condition.exist);
+        step("Проверяем наличие Issue с названием " + TestBase.issueName, () -> {
+            $(withText(TestBase.issueName)).should(Condition.exist);
         });
     }
 }

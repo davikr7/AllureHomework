@@ -8,10 +8,10 @@ import static com.codeborne.selenide.Selenide.open;
 
 
 public class TestBase {
-    SelenideElement
+    public static SelenideElement
             searchInput = $(".header-search-input"),
             issueTab = $("#issues-tab");
-    String
+    public static String
             repository = "allure-framework/allure2",
             issueName = "Activate Cleanthat in Spotless";
 

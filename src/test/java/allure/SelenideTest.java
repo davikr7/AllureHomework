@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.By.linkText;
 
-public class SelenideTest extends TestBase {
+public class SelenideTest {
 
     @Test
     @Feature("Issue в репозитории")
@@ -25,10 +25,10 @@ public class SelenideTest extends TestBase {
     public void findIssue() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com");
-        searchInput.click();
-        searchInput.setValue(repository).pressEnter();
-        $(linkText(repository)).click();
-        issueTab.click();
-        $(withText(issueName)).should(exist);
+        TestBase.searchInput.click();
+        TestBase.searchInput.setValue(TestBase.repository).pressEnter();
+        $(linkText(TestBase.repository)).click();
+        TestBase.issueTab.click();
+        $(withText(TestBase.issueName)).should(exist);
     }
 }

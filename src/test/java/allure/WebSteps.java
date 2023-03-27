@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.By.linkText;
 
-public class WebSteps extends TestBase {
+public class WebSteps {
 
     @Step("Открываем github")
     public void openMainPage() {
@@ -20,9 +20,9 @@ public class WebSteps extends TestBase {
     }
     @Step("Ищем репозиторий {repo}")
     public void searchForRepository(String repo) {
-        searchInput.click();
-        searchInput.sendKeys(repo);
-        searchInput.submit();
+        TestBase.searchInput.click();
+        TestBase.searchInput.sendKeys(repo);
+        TestBase.searchInput.submit();
     }
     @Step("Кликаем по ссылке репозитория {repo}")
     public void clickOnRepositoryLink(String repo) {
@@ -30,7 +30,7 @@ public class WebSteps extends TestBase {
     }
     @Step("Открываем таб Issues")
     public void openIssuesTab() {
-        issueTab.click();
+        TestBase.issueTab.click();
     }
     @Step("Проверяем наличие Issue с названием {issue}")
     public void shouldSeeIssueWithName(String issue) {
