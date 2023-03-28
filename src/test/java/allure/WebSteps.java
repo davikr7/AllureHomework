@@ -1,6 +1,7 @@
 package allure;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
@@ -14,15 +15,19 @@ import static org.openqa.selenium.By.linkText;
 
 public class WebSteps {
 
+    private SelenideElement
+            searchInput = $(".header-search-input"),
+            issueTab = $("#issues-tab");
+
     @Step("Открываем github")
     public void openMainPage() {
         open("https://github.com");
     }
     @Step("Ищем репозиторий {repo}")
     public void searchForRepository(String repo) {
-        TestBase.searchInput.click();
-        TestBase.searchInput.sendKeys(repo);
-        TestBase.searchInput.submit();
+        searchInput.click();
+        searchInput.sendKeys(repo);
+        searchInput.submit();
     }
     @Step("Кликаем по ссылке репозитория {repo}")
     public void clickOnRepositoryLink(String repo) {
@@ -30,7 +35,7 @@ public class WebSteps {
     }
     @Step("Открываем таб Issues")
     public void openIssuesTab() {
-        TestBase.issueTab.click();
+        issueTab.click();
     }
     @Step("Проверяем наличие Issue с названием {issue}")
     public void shouldSeeIssueWithName(String issue) {

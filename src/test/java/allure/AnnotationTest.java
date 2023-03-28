@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Test;
 
 public class AnnotationTest {
 
+   private String
+            repository = "allure-framework/allure2",
+            issueName = "Activate Cleanthat in Spotless";
+
     @Test
     @Feature("Issue в репозитории")
     @Story("Проверка Issue")
@@ -19,10 +23,10 @@ public class AnnotationTest {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
         steps.openMainPage();
-        steps.searchForRepository(TestBase.repository);
-        steps.clickOnRepositoryLink(TestBase.repository);
+        steps.searchForRepository(repository);
+        steps.clickOnRepositoryLink(repository);
         steps.openIssuesTab();
-        steps.shouldSeeIssueWithName(TestBase.issueName);
+        steps.shouldSeeIssueWithName(issueName);
         steps.takeScreenshot();
     }
 }

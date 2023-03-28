@@ -1,6 +1,7 @@
 package allure;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -17,6 +18,13 @@ import static org.openqa.selenium.By.linkText;
 
 public class LambdaTest  {
 
+    private SelenideElement
+            searchInput = $(".header-search-input"),
+            issueTab = $("#issues-tab");
+    private String
+            repository = "allure-framework/allure2",
+            issueName = "Activate Cleanthat in Spotless";
+
     @Test
     @Feature("Issue в репозитории")
     @Story("Проверка Issue")
@@ -29,22 +37,22 @@ public class LambdaTest  {
             open("https://github.com");
         });
 
-        step("Ищем репозиторий " + TestBase.repository, () -> {
-            TestBase.searchInput.click();
-            TestBase.searchInput.sendKeys(TestBase.repository);
-            TestBase.searchInput.submit();
+        step("Ищем репозиторий " + repository, () -> {
+            searchInput.click();
+            searchInput.sendKeys(repository);
+            searchInput.submit();
         });
 
-        step("Кликаем по ссылке репозитория " + TestBase.repository, () -> {
-            $(linkText(TestBase.repository)).click();
+        step("Кликаем по ссылке репозитория " + repository, () -> {
+            $(linkText(repository)).click();
         });
 
         step("Открываем таб Issues", () -> {
-            TestBase.issueTab.click();
+            issueTab.click();
         });
 
-        step("Проверяем наличие Issue с названием " + TestBase.issueName, () -> {
-            $(withText(TestBase.issueName)).should(Condition.exist);
+        step("Проверяем наличие Issue с названием " + issueName, () -> {
+            $(withText(issueName)).should(Condition.exist);
         });
     }
 }

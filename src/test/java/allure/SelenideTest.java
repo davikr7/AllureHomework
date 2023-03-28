@@ -1,5 +1,6 @@
 package allure;
 
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -17,6 +18,13 @@ import static org.openqa.selenium.By.linkText;
 
 public class SelenideTest {
 
+    private SelenideElement
+            searchInput = $(".header-search-input"),
+            issueTab = $("#issues-tab");
+    private String
+            repository = "allure-framework/allure2",
+            issueName = "Activate Cleanthat in Spotless";
+
     @Test
     @Feature("Issue в репозитории")
     @Story("Проверка Issue")
@@ -25,10 +33,10 @@ public class SelenideTest {
     public void findIssue() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com");
-        TestBase.searchInput.click();
-        TestBase.searchInput.setValue(TestBase.repository).pressEnter();
-        $(linkText(TestBase.repository)).click();
-        TestBase.issueTab.click();
-        $(withText(TestBase.issueName)).should(exist);
+        searchInput.click();
+        searchInput.setValue(repository).pressEnter();
+        $(linkText(repository)).click();
+        issueTab.click();
+        $(withText(issueName)).should(exist);
     }
 }
